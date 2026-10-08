@@ -169,40 +169,49 @@
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
-            border-radius: 20px;
+            border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(231, 60, 126, 0.35);
+            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.4), 0 0 20px rgba(255, 105, 180, 0.25);
             background: #000;
             margin: 8px 0 12px 0;
-            border: 2.5px solid rgba(255, 105, 180, 0.5);
+            border: 2.5px solid rgba(255, 105, 180, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .video-wrapper-169 video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
+            background: #000;
         }
 
         /* Other Sections: Vertical 9:16 Reel Format */
         .video-wrapper-reel {
             position: relative;
             width: 100%;
-            max-width: 220px;
+            max-width: 250px;
             aspect-ratio: 9 / 16;
-            border-radius: 20px;
+            max-height: 380px;
+            border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(231, 60, 126, 0.35);
+            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.4), 0 0 20px rgba(255, 105, 180, 0.25);
             background: #000;
             margin: 6px auto 10px auto;
-            border: 2.5px solid rgba(255, 105, 180, 0.5);
+            border: 2.5px solid rgba(255, 105, 180, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .video-wrapper-reel video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
+            background: #000;
         }
 
         #continueWorldBtn {
@@ -665,9 +674,9 @@
 
             <div class="video-wrapper-169">
                 <!-- Video 1 plays fast once -->
-                <video id="introVideo1" src="videos/1.mp4" autoplay muted playsinline></video>
+                <video id="introVideo1" src="videos/1.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
                 <!-- Video 2 plays in continuous loop after Video 1 -->
-                <video id="introVideo2" src="videos/2.mp4" muted loop playsinline class="hidden"></video>
+                <video id="introVideo2" src="videos/2.mp4" muted loop playsinline webkit-playsinline preload="auto" class="hidden"></video>
             </div>
 
             <div>
@@ -683,7 +692,7 @@
 
             <!-- Video 5 inside Apology section -->
             <div class="video-wrapper-reel">
-                <video id="apologyVideo5" src="videos/5.mp4" muted loop playsinline></video>
+                <video id="apologyVideo5" src="videos/5.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div class="buttons">
@@ -730,7 +739,7 @@
 
             <!-- Video 6 Player -->
             <div class="video-wrapper-reel">
-                <video id="knowVideo6" src="videos/6.mp4" muted loop playsinline></video>
+                <video id="knowVideo6" src="videos/6.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div>
@@ -820,7 +829,7 @@
             </div>
 
             <div class="video-wrapper-reel">
-                <video id="smileVideo7" src="videos/7.mp4" muted loop playsinline></video>
+                <video id="smileVideo7" src="videos/7.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div class="hug-container" style="margin: 6px 0 4px 0;">
@@ -837,7 +846,7 @@
             </div>
 
             <div class="video-wrapper-reel">
-                <video id="foreverVideo" src="videos/forever.mp4" muted loop playsinline></video>
+                <video id="foreverVideo" src="videos/forever.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div>
@@ -854,7 +863,7 @@
 
             <!-- Video 3 Celebration Player -->
             <div class="video-wrapper-reel">
-                <video id="celebrationVideo" src="videos/3.mp4" muted loop playsinline></video>
+                <video id="celebrationVideo" src="videos/3.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div id="emojiContainer">😊❤️💃🎉✨🥰💕🌟💖🌹😘</div>
@@ -901,7 +910,7 @@
 
             <!-- Video 4 Player -->
             <div class="video-wrapper-reel">
-                <video id="leaveVideo4" src="videos/4.mp4" muted loop playsinline></video>
+                <video id="leaveVideo4" src="videos/4.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div>
@@ -911,6 +920,48 @@
     </div>
 
     <script>
+        // Web Audio API Synthesizer for Cute Button Click / Pop Sound Effects
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playPopSound() {
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(850, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch(e) {}
+        }
+
+        // Global Video Preloader for Ultra Fast Playback & Zero Lag
+        function preloadAllVideos() {
+            const allVideos = document.querySelectorAll('video');
+            allVideos.forEach(vid => {
+                vid.preload = 'auto';
+                try { vid.load(); } catch(e) {}
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', preloadAllVideos);
+        } else {
+            preloadAllVideos();
+        }
+
+        // Attach click sound feedback to all interactive buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button') || e.target.classList.contains('tw-btn') || e.target.classList.contains('q-btn') || e.target.classList.contains('dot')) {
+                playPopSound();
+            }
+        });
+
         // DOM Elements
         const introVideo1 = document.getElementById('introVideo1');
         const introVideo2 = document.getElementById('introVideo2');
