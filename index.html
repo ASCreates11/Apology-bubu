@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Hii BUBU ❤️ | Welcome To Our World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #ff69b4, #ff1493, #ff69b4, #e73c7e);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            touch-action: manipulation;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Landscape / Desktop Blocker Overlay */
+        #orientationOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 10, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            color: white;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        #orientationOverlay .phone-icon {
+            font-size: 5em;
+            animation: rotatePhone 2.5s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes rotatePhone {
+            0%, 100% { transform: rotate(-90deg); }
+            50% { transform: rotate(0deg); }
+        }
+
+        #orientationOverlay h2 {
+            font-size: 1.8em;
+            color: #ff69b4;
+            margin-bottom: 15px;
+        }
+
+        #orientationOverlay p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 400px;
+            color: #ffe4e1;
+        }
+
+        /* Show blocker when in landscape */
+        @media screen and (orientation: landscape) {
+            #orientationOverlay {
+                display: flex !important;
+            }
+            .app-wrapper {
+                display: none !important;
+            }
+        }
+
+        /* App Wrapper for Portrait Mobile/Tablet */
+        .app-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            position: relative;
+        }
+
+        .bg-heart {
+            position: fixed;
+            font-size: 2em;
+            opacity: 0.18;
+            animation: floatAround 15s ease-in-out infinite;
+            pointer-events: none;
+            color: #fff;
+        }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -80px) rotate(90deg); }
+            50% { transform: translate(100px, 40px) rotate(180deg); }
+            75% { transform: translate(-30px, -40px) rotate(270deg); }
+        }
+
+        /* Card Container (Shared style) */
+        .container {
+            text-align: center;
+            padding: 22px 18px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 20, 147, 0.4);
+            width: 100%;
+            max-width: 420px;
+            animation: floatIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid rgba(255, 105, 180, 0.4);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 520px;
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(-30px) scale(0.9) !important;
+            pointer-events: none !important;
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Header Specifics */
+        .bubu-header {
+            font-size: 1.9em;
+            color: #e73c7e;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.25);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .intro-subtitle {
+            font-size: 1em;
+            color: #e73c7e;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* 1st Section: 16:9 Widescreen Format */
+        .video-wrapper-169 {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(231, 60, 126, 0.35);
+            background: #000;
+            margin: 8px 0 12px 0;
+            border: 2.5px solid rgba(255, 105, 180, 0.5);
+        }
+
+        .video-wrapper-169 video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Other Sections: Vertical 9:16 Reel Format */
+        .video-wrapper-reel {
+            position: relative;
+            width: 100%;
+            max-width: 220px;
+            aspect-ratio: 9 / 16;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(231, 60, 126, 0.35);
+            background: #000;
+            margin: 6px auto 10px auto;
+            border: 2.5px solid rgba(255, 105, 180, 0.5);
+        }
+
+        .video-wrapper-reel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #continueWorldBtn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+            animation: bounceBtn 2s ease infinite;
+        }
+
+        #continueWorldBtn:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes bounceBtn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
+        /* Apology Screen Specifics */
+        #mainText {
+            font-size: 1.6em;
+            color: #e73c7e;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.25);
+            animation: pulse 2s ease-in-out infinite;
+            line-height: 1.3;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .buttons {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 5px;
+        }
+
+        button {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+            touch-action: manipulation;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            font-size: 1.15em;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(231, 60, 126, 0.3);
+            z-index: 5;
+            position: relative;
+            width: 85%;
+            max-width: 300px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #yesBtn:active {
+            transform: scale(0.96);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            color: #fff;
+            position: absolute;
+            z-index: 10;
+            transition: top 0.15s ease-out, left 0.15s ease-out, transform 0.15s ease-out;
+            width: 75%;
+            max-width: 260px;
+            font-size: 1.05em;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(231, 60, 126, 0.3);
+        }
+
+        /* Typewriter Screen Specifics */
+        .typewriter-title {
+            font-size: 1.7em;
+            color: #e73c7e;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .typewriter-box {
+            background: rgba(255, 240, 245, 0.85);
+            border: 2px dashed #ff69b4;
+            border-radius: 20px;
+            padding: 18px 14px;
+            text-align: left;
+            font-size: 1.05em;
+            line-height: 1.55;
+            color: #c71585;
+            font-weight: 600;
+            min-height: 210px;
+            margin-bottom: 12px;
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(255, 105, 180, 0.15);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #e73c7e;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .typewriter-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .typewriter-actions.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .tw-btn {
+            flex: 1;
+            padding: 14px 10px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(231, 60, 126, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tw-btn:active {
+            transform: scale(0.95);
+        }
+
+        .agreed-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+        }
+
+        .leave-btn {
+            background: linear-gradient(135deg, #ff85a2, #ffa6c9);
+            color: white;
+        }
+
+        /* Question Buttons */
+        .question-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .q-btn {
+            width: 90%;
+            padding: 16px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.15em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(231, 60, 126, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .q-btn:active {
+            transform: scale(0.95);
+        }
+
+        .yes-sad-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+        }
+
+        .no-sad-btn {
+            background: linear-gradient(135deg, #ff85a2, #ffa6c9);
+            color: white;
+        }
+
+        /* Carousel Screen Styling */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 270px;
+            height: 270px;
+            margin: 6px auto 8px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(231, 60, 126, 0.35);
+            background: #000;
+            border: 2.5px solid rgba(255, 105, 180, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #000;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 20, 147, 0.8);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1em;
+            cursor: pointer;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-arrow.left { left: 8px; }
+        .carousel-arrow.right { right: 8px; }
+
+        .carousel-arrow:active {
+            transform: translateY(-50%) scale(0.9);
+        }
+
+        .carousel-caption {
+            font-size: 0.95em;
+            color: #e73c7e;
+            font-weight: bold;
+            margin-top: 2px;
+            min-height: 24px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin: 4px 0 8px 0;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 105, 180, 0.35);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .dot.active {
+            background: #e73c7e;
+            transform: scale(1.4);
+        }
+
+        /* Hug Button & Burst FX */
+        .hug-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 24px 0 16px 0;
+            position: relative;
+        }
+
+        .hug-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4, #ff85a2);
+            color: white;
+            font-size: 1.15em;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.45);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.3s ease;
+            user-select: none;
+            touch-action: manipulation;
+            width: 90%;
+            max-width: 320px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hug-btn:active, .hug-btn.growing {
+            box-shadow: 0 15px 45px rgba(255, 20, 147, 0.75);
+        }
+
+        .burst-particle {
+            position: fixed;
+            font-size: 2em;
+            pointer-events: none;
+            z-index: 9999;
+            animation: burstFly 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        @keyframes burstFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--dx), var(--dy)) scale(2) rotate(var(--rot));
+            }
+        }
+
+        /* Final Celebration Screen */
+        .celebration-title {
+            font-size: 1.7em;
+            color: #e73c7e;
+            font-weight: bold;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .celebration-sub {
+            font-size: 0.95em;
+            color: #c71585;
+            font-weight: bold;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        #emojiContainer {
+            font-size: 1.8em;
+            margin-top: 4px;
+            animation: bounce 1s ease infinite;
+            letter-spacing: 3px;
+            word-break: break-all;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 2.2em;
+            animation: floatUp 3.5s ease-in-out;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-800px) rotate(360deg);
+            }
+        }
+
+        .shake {
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px) rotate(-4deg); }
+            75% { transform: translateX(8px) rotate(4deg); }
+        }
+
+        #clickCount {
+            margin-top: 6px;
+            font-size: 0.9em;
+            color: #e73c7e;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkleAnim 0.8s ease-out forwards;
+            z-index: 999;
+        }
+
+        @keyframes sparkleAnim {
+            0% { opacity: 1; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Landscape / Desktop Warning Overlay -->
+    <div id="orientationOverlay">
+        <div class="phone-icon">📱</div>
+        <h2>Vertical Screen Only!</h2>
+        <p>Please rotate your phone or tablet to <strong>vertical (portrait) mode</strong> to view this page ❤️</p>
+    </div>
+
+    <!-- App Content Wrapper -->
+    <div class="app-wrapper">
+        <!-- Floating background hearts -->
+        <div class="bg-heart" style="top: 10%; left: 8%; animation-delay: 0s;">❤️</div>
+        <div class="bg-heart" style="top: 75%; left: 78%; animation-delay: 2s;">💖</div>
+        <div class="bg-heart" style="top: 25%; left: 82%; animation-delay: 4s;">💕</div>
+        <div class="bg-heart" style="top: 65%; left: 12%; animation-delay: 6s;">💗</div>
+        <div class="bg-heart" style="top: 18%; left: 48%; animation-delay: 8s;">💝</div>
+
+        <!-- SECTION 1: INTRO SCREEN (16:9 Widescreen format for videos 1 & 2) -->
+        <div class="container" id="introCard">
+            <div>
+                <div class="bubu-header">Hii BUBU 👋💖</div>
+                <div class="intro-subtitle">Welcome to our special world ✨</div>
+            </div>
+
+            <div class="video-wrapper-169">
+                <!-- Video 1 plays fast once -->
+                <video id="introVideo1" src="videos/1.mp4" autoplay muted playsinline></video>
+                <!-- Video 2 plays in continuous loop after Video 1 -->
+                <video id="introVideo2" src="videos/2.mp4" muted loop playsinline class="hidden"></video>
+            </div>
+
+            <div>
+                <button id="continueWorldBtn">Let's continue into our world 🚀💖</button>
+            </div>
+        </div>
+
+        <!-- SECTION 2: APOLOGY DODGING SCREEN (Features Video 5 in 9:16 Reel format) -->
+        <div class="container hidden" id="apologyCard">
+            <div>
+                <div id="mainText">I'm really sorry ❤️<br>Please forgive me 🥺</div>
+            </div>
+
+            <!-- Video 5 inside Apology section -->
+            <div class="video-wrapper-reel">
+                <video id="apologyVideo5" src="videos/5.mp4" muted loop playsinline></video>
+            </div>
+
+            <div class="buttons">
+                <button id="yesBtn">Okay baby, I forgive you 💖</button>
+                <button id="noBtn">No, I'm still angry 😠</button>
+            </div>
+            <div id="clickCount"></div>
+        </div>
+
+        <!-- SECTION 3: TYPEWRITER MESSAGE SCREEN -->
+        <div class="container hidden" id="typewriterCard">
+            <div>
+                <div class="typewriter-title">From My Heart 💌</div>
+                <div class="typewriter-box">
+                    <span id="typewriterText"></span>
+                </div>
+            </div>
+
+            <div class="typewriter-actions hidden" id="typewriterButtons">
+                <button id="agreedBtn" class="tw-btn agreed-btn">Agreed 💖</button>
+                <button id="justLeaveBtn" class="tw-btn leave-btn">Just Leave It 🥺</button>
+            </div>
+        </div>
+
+        <!-- SECTION 3.5: SAD & STRESSED QUESTION SCREEN -->
+        <div class="container hidden" id="sadQuestionCard">
+            <div>
+                <div class="bubu-header">I know now you are sad and stressed 🥺❤️</div>
+                <div class="intro-subtitle">Tell me honestly BUBU...</div>
+            </div>
+
+            <div class="question-actions">
+                <button id="sadYesBtn" class="q-btn yes-sad-btn">Yes 😔</button>
+                <button id="sadNoBtn" class="q-btn no-sad-btn">Obviously Not 💖</button>
+            </div>
+        </div>
+
+        <!-- SECTION 3.6: KNOW YOU BETTER SCREEN (Features Video 6) -->
+        <div class="container hidden" id="knowYouCard">
+            <div>
+                <div class="bubu-header">I know you better than you! 😏💖</div>
+                <div class="intro-subtitle">See? I told you! ✨</div>
+            </div>
+
+            <!-- Video 6 Player -->
+            <div class="video-wrapper-reel">
+                <video id="knowVideo6" src="videos/6.mp4" muted loop playsinline></video>
+            </div>
+
+            <div>
+                <button id="clickHereBtn" class="tw-btn agreed-btn" style="width: 100%;">Click Here 🚀✨</button>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 3.7: FUNNY MEMORIES CAROUSEL SCREEN -->
+        <div class="container hidden" id="carouselCard">
+            <div>
+                <div class="bubu-header">Look At You! 🤪💖</div>
+                <div class="intro-subtitle">Our funniest & cutest memories 💕</div>
+            </div>
+
+            <!-- Carousel Box -->
+            <div class="carousel-container" id="carouselWrapper">
+                <button class="carousel-arrow left" id="prevSlideBtn">◀</button>
+                <div id="carouselSlideContent" style="width: 100%; height: 100%;"></div>
+                <button class="carousel-arrow right" id="nextSlideBtn">▶</button>
+            </div>
+
+            <div class="carousel-caption" id="carouselCaptionText">Cutest moments ✨</div>
+            <div class="carousel-dots" id="carouselDotsContainer"></div>
+
+            <div>
+                <button id="toAsishCarouselBtn" class="tw-btn agreed-btn" style="width: 100%;">Next Surprise! 😜✨</button>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 3.8: ASISH FUNNY FACES CAROUSEL SCREEN -->
+        <div class="container hidden" id="asishCard">
+            <div>
+                <div class="bubu-header" style="font-size: 1.55em; line-height: 1.2;">Itna dukhi nahi hone ka bhidu! 😎😜</div>
+                <div class="intro-subtitle" style="font-size: 0.9em; margin-top: 4px;">All iz well bolne ka and sab gayab kar dene ka! ✨</div>
+            </div>
+
+            <!-- Asish Carousel Box -->
+            <div class="carousel-container" id="asishCarouselWrapper">
+                <button class="carousel-arrow left" id="asishPrevSlideBtn">◀</button>
+                <div id="asishCarouselSlideContent" style="width: 100%; height: 100%;"></div>
+                <button class="carousel-arrow right" id="asishNextSlideBtn">▶</button>
+            </div>
+
+            <div class="carousel-caption" id="asishCarouselCaptionText">All iz well! ✨</div>
+            <div class="carousel-dots" id="asishCarouselDotsContainer"></div>
+
+            <div>
+                <button id="toHugBtn" class="tw-btn agreed-btn" style="width: 100%;">Warm Hug Delivery! 🤗💖</button>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 3.9: HOLD TO GROW WARM HUG SCREEN -->
+        <div class="container hidden" id="hugCard">
+            <div>
+                <div class="bubu-header">Warm Hug Delivery! 🤗💖</div>
+                <div class="intro-subtitle">Press & hold the button for a warm hug to be delivered from me to you! 💕</div>
+            </div>
+
+            <div class="hug-container">
+                <button id="hugBtn" class="hug-btn">Press Here For A Warm Hug 🤗💖</button>
+            </div>
+
+            <div id="hugStatusText" style="font-size: 0.95em; color: #e73c7e; font-weight: bold; min-height: 24px; margin-top: 10px;">Hold or tap to send love... 💕</div>
+        </div>
+
+        <!-- NEW SECTION 3.10: MAHARANI MULTILINGUAL TYPEWRITER SCREEN -->
+        <div class="container hidden" id="maharaniCard">
+            <div>
+                <div class="bubu-header">Maharani Ki Jai Ho! 👑🙏</div>
+                <div class="intro-subtitle">Royal Greetings For Maharani BUBU 💕</div>
+            </div>
+
+            <div class="typewriter-box">
+                <div class="typewriter-text" id="maharaniText"></div>
+            </div>
+
+            <div class="typewriter-actions hidden" id="maharaniButtons">
+                <button id="toSmileBtn" class="tw-btn agreed-btn" style="width: 100%;">Next Special Moment 🚀✨</button>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 3.11: DELIVER YOUR SMILE TO HIM SCREEN (Video 7) -->
+        <div class="container hidden" id="smileCard">
+            <div>
+                <div class="bubu-header">Deliver Your Smile To Him! 📱😊💖</div>
+                <div class="intro-subtitle">Press & hold or tap to send your smile to him! ✨</div>
+            </div>
+
+            <div class="video-wrapper-reel">
+                <video id="smileVideo7" src="videos/7.mp4" muted loop playsinline></video>
+            </div>
+
+            <div class="hug-container" style="margin: 6px 0 4px 0;">
+                <button id="toForeverBtn" class="hug-btn" style="padding: 15px 22px; font-size: 1.05em; width: 100%;">Deliver My Smile To Him 🚀💌</button>
+            </div>
+            <div id="smileStatusText" style="font-size: 0.9em; color: #e73c7e; font-weight: bold; min-height: 20px;">Hold or tap to send your smile... 😊💖</div>
+        </div>
+
+        <!-- NEW SECTION 3.12: FOREVER VIDEO SCREEN (forever.mp4) -->
+        <div class="container hidden" id="foreverCard">
+            <div>
+                <div class="bubu-header">Together Forever & Ever! 💍💖✨</div>
+                <div class="intro-subtitle">Hand in hand through every happy & sad situation 💕</div>
+            </div>
+
+            <div class="video-wrapper-reel">
+                <video id="foreverVideo" src="videos/forever.mp4" muted loop playsinline></video>
+            </div>
+
+            <div>
+                <button id="toFinalCelebrationBtn" class="tw-btn agreed-btn" style="width: 100%;">Finally Complete Our Journey 💖🥳</button>
+            </div>
+        </div>
+
+        <!-- SECTION 4: FINAL CELEBRATION SCREEN (Features Video 3 in 9:16 Reel format) -->
+        <div class="container hidden" id="celebrationCard">
+            <div>
+                <div class="celebration-title">Yay! We Are Finally Together Forever & Completed! 😍💖🥳</div>
+                <div class="celebration-sub">I am always with you in every situation BUBU! ❤️✨</div>
+            </div>
+
+            <!-- Video 3 Celebration Player -->
+            <div class="video-wrapper-reel">
+                <video id="celebrationVideo" src="videos/3.mp4" muted loop playsinline></video>
+            </div>
+
+            <div id="emojiContainer">😊❤️💃🎉✨🥰💕🌟💖🌹😘</div>
+
+            <div>
+                <button id="toFinalMemoriesBtn" class="tw-btn agreed-btn" style="width: 100%; margin-top: 6px;">One Last Message For You 💌✨</button>
+            </div>
+        </div>
+
+        <!-- SECTION 6: PAST MEMORIES & HEARTFELT THANK YOU SCREEN -->
+        <div class="container hidden" id="finalMemoriesCard">
+            <div>
+                <div class="bubu-header" style="font-size: 1.55em; line-height: 1.25;">Our Past & Future Memories ❤️✨</div>
+                <div class="intro-subtitle" style="font-size: 0.9em; margin-bottom: 4px;">Thank you for everything BUBU 💕</div>
+            </div>
+
+            <!-- Memory Photo Frame -->
+            <div style="width: 100%; max-width: 230px; margin: 4px auto 6px auto; border-radius: 18px; overflow: hidden; border: 2.5px solid rgba(255, 105, 180, 0.5); box-shadow: 0 8px 20px rgba(231, 60, 126, 0.35); background: #000;">
+                <img src="memories/Screenshot_2022-11-22-17-32-01-13_6012fa4d4ddec268fc5c7112cbb265e7.jpg" alt="Past Memory" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+            </div>
+
+            <!-- Heartfelt Rephrased Letter -->
+            <div style="font-size: 0.88em; color: #444; line-height: 1.4; text-align: left; background: rgba(255, 240, 245, 0.9); padding: 10px 12px; border-radius: 14px; border: 1.5px solid rgba(255, 105, 180, 0.3); margin-bottom: 6px;">
+                Looking back at our past memories, I know some phases were not the best or easiest for us... but I truly believe that <strong>the best is yet to come</strong>. ✨<br><br>
+                Thank you so much for being with me, for your endless patience, and for holding my hand through all the hard times. ❤️
+            </div>
+
+            <!-- Exact Odia Disclaimer Box -->
+            <div style="font-size: 0.82em; color: #e73c7e; font-weight: bold; background: rgba(255, 228, 235, 0.95); padding: 8px 10px; border-radius: 12px; border: 1.5px dashed #ff1493; margin-bottom: 8px; line-height: 1.3; text-align: center;">
+                "Mora ete bhala english nuhe but sabu emotions mora, words mu AI ru copy karichi so copyright maribuni! 😉😜❤️"
+            </div>
+
+            <div>
+                <button id="finalLoveBtn" class="tw-btn agreed-btn" style="width: 100%;">I Love You BUBU Forever! 💖🥳</button>
+            </div>
+        </div>
+
+        <!-- SECTION 5: JUST LEAVE IT SCREEN (Features Video 4 with Go Back button) -->
+        <div class="container hidden" id="leaveCard">
+            <div>
+                <div class="bubu-header">Please Don't Leave... 🥺</div>
+                <div class="intro-subtitle">I really care about you BUBU 💔</div>
+            </div>
+
+            <!-- Video 4 Player -->
+            <div class="video-wrapper-reel">
+                <video id="leaveVideo4" src="videos/4.mp4" muted loop playsinline></video>
+            </div>
+
+            <div>
+                <button id="goBackBtn" class="tw-btn agreed-btn" style="width: 100%;">Go Back 💌</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const introVideo1 = document.getElementById('introVideo1');
+        const introVideo2 = document.getElementById('introVideo2');
+        const apologyVideo5 = document.getElementById('apologyVideo5');
+        const celebrationVideo = document.getElementById('celebrationVideo');
+        const leaveVideo4 = document.getElementById('leaveVideo4');
+        const knowVideo6 = document.getElementById('knowVideo6');
+
+        const continueWorldBtn = document.getElementById('continueWorldBtn');
+        const introCard = document.getElementById('introCard');
+        const apologyCard = document.getElementById('apologyCard');
+        const typewriterCard = document.getElementById('typewriterCard');
+        const sadQuestionCard = document.getElementById('sadQuestionCard');
+        const knowYouCard = document.getElementById('knowYouCard');
+        const carouselCard = document.getElementById('carouselCard');
+        const asishCard = document.getElementById('asishCard');
+        const celebrationCard = document.getElementById('celebrationCard');
+        const leaveCard = document.getElementById('leaveCard');
+
+        // BUBU Carousel Items List
+        const carouselItems = [
+            { type: 'image', src: 'carousel/IMG-20230316-WA0025.jpg', caption: 'Cute smile! 🥰' },
+            { type: 'image', src: 'carousel/IMG-20230316-WA0026.jpg', caption: 'Silly face 🤪' },
+            { type: 'image', src: 'carousel/IMG_20220629_213018.jpg', caption: 'Unforgettable moment ✨' },
+            { type: 'image', src: 'carousel/IMG_20221118_231214.jpg', caption: 'Sweet memories 💖' },
+            { type: 'image', src: 'carousel/IMG_20221118_231224.jpg', caption: 'Always making me laugh 😂' },
+            { type: 'image', src: 'carousel/Screenshot_2022-09-12-17-24-00-94_a63b0f8076346d26cbdc1b971a1da2a7.jpg', caption: 'Hehe look at this 😜' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-19-03-22_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'My favorite photo ❤️' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-19-40-82_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Adorable 🌸' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-20-02-99_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Look at those eyes 🥰' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-20-07-59_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'So funny! 🤣' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-20-50-87_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Pure joy ✨' },
+            { type: 'image', src: 'carousel/Screenshot_2024-10-25-11-00-49-66_a63b0f8076346d26cbdc1b971a1da2a7.jpg', caption: 'Cute expression 🤪' },
+            { type: 'image', src: 'carousel/Screenshot_2024-12-11-21-48-39-22_a63b0f8076346d26cbdc1b971a1da2a7.jpg', caption: 'Love this memory 💕' },
+            { type: 'image', src: 'carousel/Snapchat-1456152853.jpg', caption: 'Cutest ever! 💖' },
+            { type: 'video', src: 'carousel/Record_2024-12-11-21-48-46.mp4', caption: 'Funny video moment! 🎥😜' }
+        ];
+
+        let currentCarouselIndex = 0;
+        const carouselSlideContent = document.getElementById('carouselSlideContent');
+        const carouselCaptionText = document.getElementById('carouselCaptionText');
+        const carouselDotsContainer = document.getElementById('carouselDotsContainer');
+        const prevSlideBtn = document.getElementById('prevSlideBtn');
+        const nextSlideBtn = document.getElementById('nextSlideBtn');
+
+        function initCarouselDots() {
+            carouselDotsContainer.innerHTML = '';
+            carouselItems.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => showSlide(idx));
+                carouselDotsContainer.appendChild(dot);
+            });
+        }
+
+        function showSlide(index) {
+            currentCarouselIndex = (index + carouselItems.length) % carouselItems.length;
+            const item = carouselItems[currentCarouselIndex];
+
+            if (item.type === 'video') {
+                carouselSlideContent.innerHTML = `<video src="${item.src}" autoplay muted loop playsinline class="carousel-slide"></video>`;
+            } else {
+                carouselSlideContent.innerHTML = `<img src="${item.src}" alt="Memory" class="carousel-slide" />`;
+            }
+
+            carouselCaptionText.textContent = `${item.caption} (${currentCarouselIndex + 1}/${carouselItems.length})`;
+
+            const dots = carouselDotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentCarouselIndex);
+            });
+        }
+
+        prevSlideBtn.addEventListener('click', () => showSlide(currentCarouselIndex - 1));
+        nextSlideBtn.addEventListener('click', () => showSlide(currentCarouselIndex + 1));
+
+        // Touch Swipe Support for BUBU Carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const carouselWrapper = document.getElementById('carouselWrapper');
+        carouselWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        carouselWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 40) showSlide(currentCarouselIndex + 1);
+            if (touchEndX - touchStartX > 40) showSlide(currentCarouselIndex - 1);
+        }, { passive: true });
+
+        // Asish Funny Carousel Items List
+        const asishCarouselItems = [
+            { type: 'image', src: 'asish/IMG_20261008_220722459.jpg', caption: 'Itna dukhi nahi hone ka bhidu! 😎' },
+            { type: 'image', src: 'asish/IMG_20261008_220727022.jpg', caption: 'All iz well bolne ka! 😜' },
+            { type: 'image', src: 'asish/IMG_20261008_220730682.jpg', caption: 'And sab gayab kar dene ka! ✨' },
+            { type: 'image', src: 'asish/IMG_20261008_220737483.jpg', caption: 'Always here to make you smile 💕' },
+            { type: 'video', src: 'asish/VID_20261008_220746317.mp4', caption: 'Funny Asish moment! 🎥🤣' },
+            { type: 'video', src: 'asish/VID_20261008_220754443.mp4', caption: 'Don\'t stress BUBU! 💖' },
+            { type: 'video', src: 'asish/VID_20261008_220800381.mp4', caption: 'Silly face time! 😜🎥' },
+            { type: 'video', src: 'asish/VID_20261008_220831058.mp4', caption: 'Cheer up! 🌟' },
+            { type: 'image', src: 'asish/IMG_20261008_220836381.jpg', caption: 'Everything will be fine ❤️' },
+            { type: 'image', src: 'asish/IMG_20261008_220840787.jpg', caption: 'Love you forever BUBU! 💖🥳' }
+        ];
+
+        let currentAsishCarouselIndex = 0;
+        const asishCarouselSlideContent = document.getElementById('asishCarouselSlideContent');
+        const asishCarouselCaptionText = document.getElementById('asishCarouselCaptionText');
+        const asishCarouselDotsContainer = document.getElementById('asishCarouselDotsContainer');
+        const asishPrevSlideBtn = document.getElementById('asishPrevSlideBtn');
+        const asishNextSlideBtn = document.getElementById('asishNextSlideBtn');
+
+        function initAsishCarouselDots() {
+            if (!asishCarouselDotsContainer) return;
+            asishCarouselDotsContainer.innerHTML = '';
+            asishCarouselItems.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => showAsishSlide(idx));
+                asishCarouselDotsContainer.appendChild(dot);
+            });
+        }
+
+        function showAsishSlide(index) {
+            if (!asishCarouselSlideContent) return;
+            currentAsishCarouselIndex = (index + asishCarouselItems.length) % asishCarouselItems.length;
+            const item = asishCarouselItems[currentAsishCarouselIndex];
+
+            if (item.type === 'video') {
+                asishCarouselSlideContent.innerHTML = `<video src="${item.src}" autoplay muted loop playsinline class="carousel-slide"></video>`;
+            } else {
+                asishCarouselSlideContent.innerHTML = `<img src="${item.src}" alt="Asish Memory" class="carousel-slide" />`;
+            }
+
+            asishCarouselCaptionText.textContent = `${item.caption} (${currentAsishCarouselIndex + 1}/${asishCarouselItems.length})`;
+
+            const dots = asishCarouselDotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentAsishCarouselIndex);
+            });
+        }
+
+        if (asishPrevSlideBtn) asishPrevSlideBtn.addEventListener('click', () => showAsishSlide(currentAsishCarouselIndex - 1));
+        if (asishNextSlideBtn) asishNextSlideBtn.addEventListener('click', () => showAsishSlide(currentAsishCarouselIndex + 1));
+
+        // Touch Swipe Support for Asish Carousel
+        let asishTouchStartX = 0;
+        let asishTouchEndX = 0;
+        const asishCarouselWrapper = document.getElementById('asishCarouselWrapper');
+        if (asishCarouselWrapper) {
+            asishCarouselWrapper.addEventListener('touchstart', (e) => {
+                asishTouchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            asishCarouselWrapper.addEventListener('touchend', (e) => {
+                asishTouchEndX = e.changedTouches[0].screenX;
+                if (asishTouchStartX - asishTouchEndX > 40) showAsishSlide(currentAsishCarouselIndex + 1);
+                if (asishTouchEndX - asishTouchStartX > 40) showAsishSlide(currentAsishCarouselIndex - 1);
+            }, { passive: true });
+        }
+
+        // SECTION 1 Video Sequence: Video 1 (fast 1.75x) -> Video 2 (loop)
+        if (introVideo1) {
+            introVideo1.playbackRate = 1.75;
+
+            const startLoopVideo = () => {
+                introVideo1.classList.add('hidden');
+                introVideo2.classList.remove('hidden');
+                introVideo2.play().catch(e => console.log('Video 2 error:', e));
+            };
+
+            introVideo1.addEventListener('ended', startLoopVideo);
+            
+            setTimeout(() => {
+                if (!introVideo1.classList.contains('hidden') && introVideo1.ended) {
+                    startLoopVideo();
+                }
+            }, 10000);
+        }
+
+        // Transition: Section 1 -> Section 2 (Apology Screen with Video 5)
+        continueWorldBtn.addEventListener('click', function() {
+            introCard.classList.add('fade-out');
+            setTimeout(() => {
+                introCard.classList.add('hidden');
+                apologyCard.classList.remove('hidden');
+                apologyCard.classList.remove('fade-out');
+                initNoButton();
+                
+                if (introVideo1) introVideo1.pause();
+                if (introVideo2) introVideo2.pause();
+                if (apologyVideo5) {
+                    apologyVideo5.play().catch(e => console.log('Video 5 error:', e));
+                }
+            }, 450);
+        });
+
+        // Apology Screen Logic (Dodging No button)
+        const mainText = document.getElementById('mainText');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const clickCount = document.getElementById('clickCount');
+        const buttonsContainer = document.querySelector('.buttons');
+
+        const sorryMessages = [
+            "I'm really sorry ❤️<br>Please forgive me 🥺",
+            "I promise I'll never do it again 😢💕",
+            "You mean the world to me 🌍💖",
+            "I can't stop thinking about how sorry I am 😭",
+            "Please give me another chance 🙏❤️",
+            "I'll do anything to make it up to you 💝",
+            "You're the most important person to me 🥰",
+            "I messed up, but I love you so much 💕😔",
+            "Life isn't the same without your smile 😢💖",
+            "I promise to be better for you 🌟❤️",
+            "Forgive me please? I'll buy you ice cream 🍦💕",
+            "I'm so so so sorry baby 😭❤️",
+            "You deserve the world and I'll give it to you 🌹💖",
+            "Pretty please with a cherry on top? 🍒🥺",
+            "I'll never let you down again, I promise 💍❤️"
+        ];
+
+        let currentMessageIndex = 0;
+        let noClickCount = 0;
+
+        function createSparkle(x, y) {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = x + (Math.random() - 0.5) * 40 + 'px';
+                sparkle.style.top = y + (Math.random() - 0.5) * 40 + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 800);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = ['❤️', '💖', '💕', '💗', '💝', '🥰', '😍'][Math.floor(Math.random() * 7)];
+            heart.style.left = Math.random() * (window.innerWidth - 40) + 20 + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3500);
+        }
+
+        function moveNoButton() {
+            const rect = buttonsContainer.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            const yesRect = yesBtn.getBoundingClientRect();
+            
+            const maxX = Math.max(10, rect.width - btnRect.width - 15);
+            const maxY = Math.max(10, rect.height - btnRect.height - 15);
+            
+            let newX, newY;
+            let attempts = 0;
+            const maxAttempts = 60;
+            
+            do {
+                newX = Math.random() * maxX + 8;
+                newY = Math.random() * maxY + 8;
+                attempts++;
+                
+                const noLeft = rect.left + newX;
+                const noRight = noLeft + btnRect.width;
+                const noTop = rect.top + newY;
+                const noBottom = noTop + btnRect.height;
+                
+                const yesLeft = yesRect.left;
+                const yesRight = yesRect.right;
+                const yesTop = yesRect.top;
+                const yesBottom = yesRect.bottom;
+                
+                const padding = 20;
+                
+                const overlaps = !(
+                    noRight + padding < yesLeft ||
+                    noLeft - padding > yesRight ||
+                    noBottom + padding < yesTop ||
+                    noTop - padding > yesBottom
+                );
+                
+                if (!overlaps || attempts >= maxAttempts) {
+                    break;
+                }
+            } while (true);
+            
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            
+            createSparkle(btnRect.left + btnRect.width/2, btnRect.top + btnRect.height/2);
+            
+            noClickCount++;
+            const newScale = Math.max(0.35, 1 - (noClickCount * 0.08));
+            noBtn.style.transform = `scale(${newScale})`;
+        }
+
+        function initNoButton() {
+            noBtn.style.left = '50%';
+            noBtn.style.top = '100px';
+            noBtn.style.transform = 'translateX(-50%) scale(1)';
+            noClickCount = 0;
+        }
+
+        function handleNoAction(e) {
+            if (e) e.preventDefault();
+            
+            moveNoButton();
+            
+            currentMessageIndex = (currentMessageIndex + 1) % sorryMessages.length;
+            mainText.innerHTML = sorryMessages[currentMessageIndex];
+            
+            mainText.classList.add('shake');
+            setTimeout(() => mainText.classList.remove('shake'), 400);
+
+            if (noClickCount <= 5) {
+                clickCount.innerHTML = `Come on... just tap YES! 🥺 (${noClickCount})`;
+            } else if (noClickCount <= 10) {
+                clickCount.innerHTML = `Please baby! I'm begging you! 😭 (${noClickCount})`;
+            } else {
+                clickCount.innerHTML = `I can do this all day! 💪❤️ (${noClickCount})`;
+            }
+
+            createHeart();
+        }
+
+        noBtn.addEventListener('touchstart', handleNoAction, { passive: false });
+        noBtn.addEventListener('click', handleNoAction);
+        noBtn.addEventListener('mouseenter', moveNoButton);
+
+        // Transition: Section 2 -> Section 3 (Typewriter Screen)
+        yesBtn.addEventListener('click', function() {
+            apologyCard.classList.add('fade-out');
+            setTimeout(() => {
+                apologyCard.classList.add('hidden');
+                typewriterCard.classList.remove('hidden');
+                typewriterCard.classList.remove('fade-out');
+                if (apologyVideo5) apologyVideo5.pause();
+                startTypewriter();
+            }, 450);
+        });
+
+        // Typewriter Logic
+        const typewriterText = document.getElementById('typewriterText');
+        const typewriterButtons = document.getElementById('typewriterButtons');
+        const agreedBtn = document.getElementById('agreedBtn');
+        const justLeaveBtn = document.getElementById('justLeaveBtn');
+
+        const typewriterMessage = "I am really sorry... I know my sorry can't heal your pain, your stress, and your pressure, but I am with you always in your every situation — and every happy and sad situation out there. ❤️✨";
+        let charIndex = 0;
+
+        function startTypewriter() {
+            typewriterText.innerHTML = '';
+            typewriterButtons.classList.add('hidden');
+            charIndex = 0;
+
+            function typeNextChar() {
+                if (charIndex < typewriterMessage.length) {
+                    typewriterText.innerHTML = typewriterMessage.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                    charIndex++;
+                    setTimeout(typeNextChar, 35);
+                } else {
+                    typewriterText.innerHTML = typewriterMessage + ' <span class="cursor"></span>';
+                    typewriterButtons.classList.remove('hidden');
+                }
+            }
+            typeNextChar();
+        }
+
+        // Transition: Section 3 -> Section 3.5 ("I know now you are sad and stressed")
+        agreedBtn.addEventListener('click', function() {
+            typewriterCard.classList.add('fade-out');
+            setTimeout(() => {
+                typewriterCard.classList.add('hidden');
+                sadQuestionCard.classList.remove('hidden');
+                sadQuestionCard.classList.remove('fade-out');
+            }, 450);
+        });
+
+        // Question Option: YES 😔 -> Move to Carousel Screen
+        const sadYesBtn = document.getElementById('sadYesBtn');
+        sadYesBtn.addEventListener('click', function() {
+            sadQuestionCard.classList.add('fade-out');
+            setTimeout(() => {
+                sadQuestionCard.classList.add('hidden');
+                openCarouselScreen();
+            }, 450);
+        });
+
+        // Question Option: OBVIOUSLY NOT 💖 -> Move to Section 3.6 (Know You Better Screen with Video 6)
+        const sadNoBtn = document.getElementById('sadNoBtn');
+        sadNoBtn.addEventListener('click', function() {
+            sadQuestionCard.classList.add('fade-out');
+            setTimeout(() => {
+                sadQuestionCard.classList.add('hidden');
+                knowYouCard.classList.remove('hidden');
+                knowYouCard.classList.remove('fade-out');
+
+                if (knowVideo6) {
+                    knowVideo6.play().catch(e => console.log('Know video 6 error:', e));
+                }
+            }, 450);
+        });
+
+        // Button on Section 3.6: "Click Here 🚀✨" -> Move to Carousel Screen
+        const clickHereBtn = document.getElementById('clickHereBtn');
+        clickHereBtn.addEventListener('click', function() {
+            knowYouCard.classList.add('fade-out');
+            setTimeout(() => {
+                knowYouCard.classList.add('hidden');
+                if (knowVideo6) knowVideo6.pause();
+                openCarouselScreen();
+            }, 450);
+        });
+
+        // Open BUBU Carousel Screen Function
+        function openCarouselScreen() {
+            carouselCard.classList.remove('hidden');
+            carouselCard.classList.remove('fade-out');
+            initCarouselDots();
+            showSlide(0);
+
+            // Prevent accidental tap-through onto "Next Surprise!"
+            const toAsishBtn = document.getElementById('toAsishCarouselBtn');
+            if (toAsishBtn) {
+                toAsishBtn.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    toAsishBtn.style.pointerEvents = 'auto';
+                }, 600);
+            }
+        }
+
+        // Transition: BUBU Carousel Screen -> Asish Carousel Screen
+        const toAsishCarouselBtn = document.getElementById('toAsishCarouselBtn');
+        if (toAsishCarouselBtn) {
+            toAsishCarouselBtn.addEventListener('click', function() {
+                carouselCard.classList.add('fade-out');
+                setTimeout(() => {
+                    carouselCard.classList.add('hidden');
+                    openAsishCarouselScreen();
+                }, 450);
+            });
+        }
+
+        // DOM elements for new sections
+        const hugCard = document.getElementById('hugCard');
+        const maharaniCard = document.getElementById('maharaniCard');
+        const smileCard = document.getElementById('smileCard');
+        const foreverCard = document.getElementById('foreverCard');
+        const smileVideo7 = document.getElementById('smileVideo7');
+        const foreverVideo = document.getElementById('foreverVideo');
+
+        // Transition: Open Asish Carousel Screen Function
+        function openAsishCarouselScreen() {
+            asishCard.classList.remove('hidden');
+            asishCard.classList.remove('fade-out');
+            initAsishCarouselDots();
+            showAsishSlide(0);
+
+            const toHugB = document.getElementById('toHugBtn');
+            if (toHugB) {
+                toHugB.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    toHugB.style.pointerEvents = 'auto';
+                }, 600);
+            }
+        }
+
+        // Transition: Asish Carousel -> Hug Screen
+        const toHugBtn = document.getElementById('toHugBtn');
+        if (toHugBtn) {
+            toHugBtn.addEventListener('click', function() {
+                asishCard.classList.add('fade-out');
+                setTimeout(() => {
+                    asishCard.classList.add('hidden');
+                    hugCard.classList.remove('hidden');
+                    hugCard.classList.remove('fade-out');
+                }, 450);
+            });
+        }
+
+        // Hug Button Hold-To-Grow & Burst Logic
+        const hugBtn = document.getElementById('hugBtn');
+        const hugStatusText = document.getElementById('hugStatusText');
+        let hugScale = 1;
+        let hugHoldTimer = null;
+        let isBursting = false;
+
+        function triggerBurstEffect() {
+            if (isBursting) return;
+            isBursting = true;
+            if (hugStatusText) hugStatusText.textContent = "WARM HUG DELIVERED! 🤗💖🎉";
+
+            const emojis = ['🤗', '💖', '💕', '💗', '💝', '🥰', '😍', '✨', '🌸', '👑'];
+            const btnRect = hugBtn.getBoundingClientRect();
+            const centerX = btnRect.left + btnRect.width / 2;
+            const centerY = btnRect.top + btnRect.height / 2;
+
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'burst-particle';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 120 + Math.random() * 220;
+                const dx = Math.cos(angle) * distance + 'px';
+                const dy = Math.sin(angle) * distance + 'px';
+                const rot = (Math.random() - 0.5) * 360 + 'deg';
+
+                particle.style.setProperty('--dx', dx);
+                particle.style.setProperty('--dy', dy);
+                particle.style.setProperty('--rot', rot);
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1200);
+            }
+
+            hugBtn.style.transform = 'scale(1.8)';
+            setTimeout(() => {
+                hugBtn.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    hugCard.classList.add('fade-out');
+                    setTimeout(() => {
+                        hugCard.classList.add('hidden');
+                        startMaharaniTypewriter();
+                    }, 450);
+                }, 400);
+            }, 600);
+        }
+
+        function startGrowing() {
+            if (isBursting) return;
+            hugBtn.classList.add('growing');
+            if (hugStatusText) hugStatusText.textContent = "Sending warm hug... 💖🤗";
+
+            hugHoldTimer = setInterval(() => {
+                hugScale += 0.08;
+                hugBtn.style.transform = `scale(${hugScale})`;
+
+                if (hugScale >= 1.6) {
+                    clearInterval(hugHoldTimer);
+                    triggerBurstEffect();
+                }
+            }, 80);
+        }
+
+        function stopGrowing() {
+            if (isBursting) return;
+            clearInterval(hugHoldTimer);
+            hugBtn.classList.remove('growing');
+
+            if (hugScale > 1.2) {
+                triggerBurstEffect();
+            } else {
+                hugScale = 1;
+                hugBtn.style.transform = 'scale(1)';
+                if (hugStatusText) hugStatusText.textContent = "Hold or tap to send love... 💕";
+            }
+        }
+
+        if (hugBtn) {
+            hugBtn.addEventListener('mousedown', startGrowing);
+            hugBtn.addEventListener('mouseup', stopGrowing);
+            hugBtn.addEventListener('mouseleave', stopGrowing);
+
+            hugBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                startGrowing();
+            }, { passive: false });
+
+            hugBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                stopGrowing();
+            });
+
+            hugBtn.addEventListener('click', (e) => {
+                if (!isBursting && hugScale < 1.2) {
+                    hugScale = 1.4;
+                    triggerBurstEffect();
+                }
+            });
+        }
+
+        // Maharani Multilingual Typewriter Logic
+        const maharaniText = document.getElementById('maharaniText');
+        const maharaniButtons = document.getElementById('maharaniButtons');
+        const toSmileBtn = document.getElementById('toSmileBtn');
+
+        const maharaniMessages = [
+            "Maharani Ki Jai Ho! 👑✨",
+            "Namaste Maharani Ji 🙏👸",
+            "Vanakkam Maharani! 🌺💖",
+            "Pranam Maharani BUBU! 🙏❤️",
+            "Welcome Your Highness Maharani! 🌹👑✨",
+            "Always at your service Maharani! 🥰💕"
+        ];
+
+        function startMaharaniTypewriter() {
+            maharaniCard.classList.remove('hidden');
+            maharaniCard.classList.remove('fade-out');
+            if (maharaniButtons) maharaniButtons.classList.add('hidden');
+            if (maharaniText) maharaniText.innerHTML = '';
+
+            let msgIdx = 0;
+            let charIdx = 0;
+            let combinedText = "";
+
+            function typeMaharaniLine() {
+                if (msgIdx < maharaniMessages.length) {
+                    const currentLine = maharaniMessages[msgIdx];
+                    if (charIdx < currentLine.length) {
+                        maharaniText.innerHTML = combinedText + currentLine.substring(0, charIdx + 1) + '<span class="cursor"></span>';
+                        charIdx++;
+                        setTimeout(typeMaharaniLine, 35);
+                    } else {
+                        combinedText += currentLine + '<br><br>';
+                        msgIdx++;
+                        charIdx = 0;
+                        setTimeout(typeMaharaniLine, 300);
+                    }
+                } else {
+                    maharaniText.innerHTML = combinedText;
+                    if (maharaniButtons) maharaniButtons.classList.remove('hidden');
+                }
+            }
+            typeMaharaniLine();
+        }
+
+        if (toSmileBtn) {
+            toSmileBtn.addEventListener('click', function() {
+                maharaniCard.classList.add('fade-out');
+                setTimeout(() => {
+                    maharaniCard.classList.add('hidden');
+                    smileCard.classList.remove('hidden');
+                    smileCard.classList.remove('fade-out');
+                    if (smileVideo7) smileVideo7.play().catch(e => console.log('Video 7 error:', e));
+                }, 450);
+            });
+        }
+
+        // Smile Button Hold-To-Grow & Burst Transition Logic
+        const toForeverBtn = document.getElementById('toForeverBtn');
+        const smileStatusText = document.getElementById('smileStatusText');
+        let smileScale = 1;
+        let smileHoldTimer = null;
+        let isSmileBursting = false;
+
+        function triggerSmileBurstEffect() {
+            if (isSmileBursting) return;
+            isSmileBursting = true;
+            if (smileStatusText) smileStatusText.textContent = "SMILE DELIVERED TO HIM! 😊💖🎉";
+
+            const emojis = ['😊', '😄', '🥰', '😍', '💖', '💕', '✨', '📱', '💌', '🌸', '🥳'];
+            const btnRect = toForeverBtn.getBoundingClientRect();
+            const centerX = btnRect.left + btnRect.width / 2;
+            const centerY = btnRect.top + btnRect.height / 2;
+
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'burst-particle';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 120 + Math.random() * 220;
+                const dx = Math.cos(angle) * distance + 'px';
+                const dy = Math.sin(angle) * distance + 'px';
+                const rot = (Math.random() - 0.5) * 360 + 'deg';
+
+                particle.style.setProperty('--dx', dx);
+                particle.style.setProperty('--dy', dy);
+                particle.style.setProperty('--rot', rot);
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1200);
+            }
+
+            toForeverBtn.style.transform = 'scale(1.8)';
+            setTimeout(() => {
+                toForeverBtn.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    smileCard.classList.add('fade-out');
+                    setTimeout(() => {
+                        smileCard.classList.add('hidden');
+                        if (smileVideo7) smileVideo7.pause();
+                        foreverCard.classList.remove('hidden');
+                        foreverCard.classList.remove('fade-out');
+                        if (foreverVideo) foreverVideo.play().catch(e => console.log('Forever video error:', e));
+                    }, 450);
+                }, 400);
+            }, 600);
+        }
+
+        function startSmileGrowing() {
+            if (isSmileBursting) return;
+            toForeverBtn.classList.add('growing');
+            if (smileStatusText) smileStatusText.textContent = "Delivering your smile... 😊💖";
+
+            smileHoldTimer = setInterval(() => {
+                smileScale += 0.08;
+                toForeverBtn.style.transform = `scale(${smileScale})`;
+
+                if (smileScale >= 1.6) {
+                    clearInterval(smileHoldTimer);
+                    triggerSmileBurstEffect();
+                }
+            }, 80);
+        }
+
+        function stopSmileGrowing() {
+            if (isSmileBursting) return;
+            clearInterval(smileHoldTimer);
+            toForeverBtn.classList.remove('growing');
+
+            if (smileScale > 1.2) {
+                triggerSmileBurstEffect();
+            } else {
+                smileScale = 1;
+                toForeverBtn.style.transform = 'scale(1)';
+                if (smileStatusText) smileStatusText.textContent = "Hold or tap to send your smile... 😊💖";
+            }
+        }
+
+        if (toForeverBtn) {
+            toForeverBtn.addEventListener('mousedown', startSmileGrowing);
+            toForeverBtn.addEventListener('mouseup', stopSmileGrowing);
+            toForeverBtn.addEventListener('mouseleave', stopSmileGrowing);
+
+            toForeverBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                startSmileGrowing();
+            }, { passive: false });
+
+            toForeverBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                stopSmileGrowing();
+            });
+
+            toForeverBtn.addEventListener('click', (e) => {
+                if (!isSmileBursting && smileScale < 1.2) {
+                    smileScale = 1.4;
+                    triggerSmileBurstEffect();
+                }
+            });
+        }
+
+        // Transition: Forever Card -> Final Celebration Screen
+        const toFinalCelebrationBtn = document.getElementById('toFinalCelebrationBtn');
+        if (toFinalCelebrationBtn) {
+            toFinalCelebrationBtn.addEventListener('click', function() {
+                foreverCard.classList.add('fade-out');
+                setTimeout(() => {
+                    foreverCard.classList.add('hidden');
+                    if (foreverVideo) foreverVideo.pause();
+                    triggerFinalCelebration();
+                }, 450);
+            });
+        }
+
+        // Final Celebration Transition Handler (Section 4 with Video 3)
+        function triggerFinalCelebration() {
+            celebrationCard.classList.remove('hidden');
+            celebrationCard.classList.remove('fade-out');
+
+            if (celebrationVideo) {
+                celebrationVideo.play().catch(e => console.log('Celebration video error:', e));
+            }
+
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => createHeart(), i * 120);
+            }
+
+            document.body.style.background = 'linear-gradient(-45deg, #ff69b4, #ff1493, #ff69b4, #ffc0cb, #ff69b4, #ff1493)';
+        }
+
+        // Transition: Celebration Screen -> Final Memories & Heartfelt Note Screen
+        const finalMemoriesCard = document.getElementById('finalMemoriesCard');
+        const toFinalMemoriesBtn = document.getElementById('toFinalMemoriesBtn');
+        const finalLoveBtn = document.getElementById('finalLoveBtn');
+
+        if (toFinalMemoriesBtn) {
+            toFinalMemoriesBtn.addEventListener('click', function() {
+                celebrationCard.classList.add('fade-out');
+                setTimeout(() => {
+                    celebrationCard.classList.add('hidden');
+                    if (celebrationVideo) celebrationVideo.pause();
+                    finalMemoriesCard.classList.remove('hidden');
+                    finalMemoriesCard.classList.remove('fade-out');
+                }, 450);
+            });
+        }
+
+        if (finalLoveBtn) {
+            finalLoveBtn.addEventListener('click', function() {
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => createHeart(), i * 80);
+                }
+                finalLoveBtn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    finalLoveBtn.style.transform = 'scale(1)';
+                }, 300);
+            });
+        }
+
+        // Transition: Section 3 -> Section 5 ("Just Leave It" with Video 4)
+        justLeaveBtn.addEventListener('click', function() {
+            typewriterCard.classList.add('fade-out');
+            setTimeout(() => {
+                typewriterCard.classList.add('hidden');
+                leaveCard.classList.remove('hidden');
+                leaveCard.classList.remove('fade-out');
+
+                if (leaveVideo4) {
+                    leaveVideo4.play().catch(e => console.log('Leave video 4 error:', e));
+                }
+            }, 450);
+        });
+
+        // Transition: Section 5 ("Just Leave It") -> Section 3 (Back to Typewriter Screen)
+        const goBackBtn = document.getElementById('goBackBtn');
+        goBackBtn.addEventListener('click', function() {
+            leaveCard.classList.add('fade-out');
+            setTimeout(() => {
+                leaveCard.classList.add('hidden');
+                leaveCard.classList.remove('fade-out');
+                typewriterCard.classList.remove('hidden');
+                typewriterCard.classList.remove('fade-out');
+                if (leaveVideo4) leaveVideo4.pause();
+                startTypewriter();
+            }, 450);
+        });
+
+        // Yes button scale boost when No is pressed multiple times
+        setInterval(() => {
+            if (noClickCount > 3 && !apologyCard.classList.contains('hidden')) {
+                const boostScale = Math.min(1.4, 1.0 + (noClickCount * 0.04));
+                yesBtn.style.transform = `scale(${boostScale})`;
+            }
+        }, 100);
+    </script>
+</body>
+</html>
