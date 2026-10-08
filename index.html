@@ -826,6 +826,11 @@
                 <div class="intro-subtitle">Press & hold the button for a warm hug to be delivered from me to you! 💕</div>
             </div>
 
+            <!-- Video 9 Player -->
+            <div class="video-wrapper-reel">
+                <video id="hugVideo9" src="videos/9.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
+            </div>
+
             <div class="hug-container">
                 <button id="hugBtn" class="hug-btn">Press Here For A Warm Hug 🤗💖</button>
             </div>
@@ -838,6 +843,11 @@
             <div>
                 <div class="bubu-header">Maharani Ki Jai Ho! 👑🙏</div>
                 <div class="intro-subtitle">Royal Greetings For Maharani BUBU 💕</div>
+            </div>
+
+            <!-- Video 8 Player -->
+            <div class="video-wrapper-reel">
+                <video id="maharaniVideo8" src="videos/8.mp4" muted loop playsinline webkit-playsinline preload="auto"></video>
             </div>
 
             <div class="typewriter-box">
@@ -1001,6 +1011,8 @@
         const celebrationVideo = document.getElementById('celebrationVideo');
         const leaveVideo4 = document.getElementById('leaveVideo4');
         const knowVideo6 = document.getElementById('knowVideo6');
+        const hugVideo9 = document.getElementById('hugVideo9');
+        const maharaniVideo8 = document.getElementById('maharaniVideo8');
 
         const continueWorldBtn = document.getElementById('continueWorldBtn');
         const introCard = document.getElementById('introCard');
@@ -1468,6 +1480,10 @@
                     asishCard.classList.add('hidden');
                     hugCard.classList.remove('hidden');
                     hugCard.classList.remove('fade-out');
+                    if (hugVideo9) {
+                        hugVideo9.currentTime = 0;
+                        hugVideo9.play().catch(e => console.log('Hug video 9 error:', e));
+                    }
                 }, 450);
             });
         }
@@ -1517,6 +1533,7 @@
                     hugCard.classList.add('fade-out');
                     setTimeout(() => {
                         hugCard.classList.add('hidden');
+                        if (hugVideo9) hugVideo9.pause();
                         startMaharaniTypewriter();
                     }, 450);
                 }, 400);
@@ -1595,6 +1612,10 @@
             maharaniCard.classList.remove('fade-out');
             if (maharaniButtons) maharaniButtons.classList.add('hidden');
             if (maharaniText) maharaniText.innerHTML = '';
+            if (maharaniVideo8) {
+                maharaniVideo8.currentTime = 0;
+                maharaniVideo8.play().catch(e => console.log('Maharani video 8 error:', e));
+            }
 
             let msgIdx = 0;
             let charIdx = 0;
@@ -1626,6 +1647,7 @@
                 maharaniCard.classList.add('fade-out');
                 setTimeout(() => {
                     maharaniCard.classList.add('hidden');
+                    if (maharaniVideo8) maharaniVideo8.pause();
                     smileCard.classList.remove('hidden');
                     smileCard.classList.remove('fade-out');
                     if (smileVideo7) smileVideo7.play().catch(e => console.log('Video 7 error:', e));
