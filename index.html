@@ -11,12 +11,37 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
+            scrollbar-width: thin;
+            scrollbar-color: #ff69b4 rgba(255, 240, 245, 0.6);
+        }
+
+        /* Custom Pink Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 240, 245, 0.6);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff69b4, #ff1493);
+            border-radius: 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #ff1493, #e73c7e);
         }
 
         html, body {
             width: 100%;
-            height: 100%;
-            overflow: hidden;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            overflow-x: hidden;
+            overflow-y: auto;
             font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #ff69b4, #ff1493, #ff69b4, #e73c7e);
             background-size: 400% 400%;
@@ -86,12 +111,13 @@
         /* App Wrapper for Portrait Mobile/Tablet */
         .app-wrapper {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 12px;
+            padding: 16px 12px;
             position: relative;
+            overflow-y: auto;
         }
 
         .bg-heart {
@@ -119,6 +145,8 @@
             box-shadow: 0 20px 50px rgba(255, 20, 147, 0.4);
             width: 100%;
             max-width: 420px;
+            max-height: 92vh;
+            overflow-y: auto;
             animation: floatIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 3px solid rgba(255, 105, 180, 0.4);
             position: relative;
