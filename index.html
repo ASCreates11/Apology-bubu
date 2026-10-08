@@ -908,10 +908,14 @@
                 <div class="intro-subtitle" style="font-size: 0.9em; margin-bottom: 4px;">Thank you for everything BUBU 💕</div>
             </div>
 
-            <!-- Memory Photo Frame -->
-            <div style="width: 100%; max-width: 230px; margin: 4px auto 6px auto; border-radius: 18px; overflow: hidden; border: 2.5px solid rgba(255, 105, 180, 0.5); box-shadow: 0 8px 20px rgba(231, 60, 126, 0.35); background: #000;">
-                <img src="memories/Screenshot_2022-11-22-17-32-01-13_6012fa4d4ddec268fc5c7112cbb265e7.jpg" alt="Past Memory" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+            <!-- Memory Photo Carousel Frame -->
+            <div class="carousel-container" id="finalCarouselWrapper" style="margin: 4px auto 6px auto;">
+                <button class="carousel-arrow left" id="finalPrevSlideBtn">◀</button>
+                <div id="finalCarouselSlideContent" style="width: 100%; height: 100%;"></div>
+                <button class="carousel-arrow right" id="finalNextSlideBtn">▶</button>
             </div>
+            <div class="carousel-caption" id="finalCarouselCaptionText" style="margin-bottom: 6px;">Our First Special Memory ❤️</div>
+            <div class="carousel-dots" id="finalCarouselDotsContainer" style="margin-bottom: 6px;"></div>
 
             <!-- Heartfelt Rephrased Letter -->
             <div style="font-size: 0.88em; color: #444; line-height: 1.4; text-align: left; background: rgba(255, 240, 245, 0.9); padding: 10px 12px; border-radius: 14px; border: 1.5px solid rgba(255, 105, 180, 0.3); margin-bottom: 6px;">
@@ -1770,6 +1774,83 @@
         const toFinalMemoriesBtn = document.getElementById('toFinalMemoriesBtn');
         const finalLoveBtn = document.getElementById('finalLoveBtn');
 
+        // Final Memories Carousel Items List
+        const finalMemoryItems = [
+            { type: 'image', src: 'memories/Screenshot_2022-11-22-17-32-01-13_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Our First Special Memory ❤️' },
+            { type: 'image', src: 'carousel/IMG-20230316-WA0025.jpg', caption: 'Cute smile! 🥰' },
+            { type: 'image', src: 'carousel/IMG-20230316-WA0026.jpg', caption: 'Silly face 🤪' },
+            { type: 'image', src: 'carousel/IMG_20220629_213018.jpg', caption: 'Unforgettable moment ✨' },
+            { type: 'image', src: 'carousel/IMG_20221118_231214.jpg', caption: 'Sweet memories 💖' },
+            { type: 'image', src: 'carousel/IMG_20221118_231224.jpg', caption: 'Always making me laugh 😂' },
+            { type: 'image', src: 'carousel/Screenshot_2022-09-12-17-24-00-94_a63b0f8076346d26cbdc1b971a1da2a7.jpg', caption: 'Precious moment 💕' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-19-03-22_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'My favorite photo ❤️' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-19-40-82_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Adorable 🌸' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-20-02-99_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Look at those eyes 🥰' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-20-07-59_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'So funny! 🤣' },
+            { type: 'image', src: 'carousel/Screenshot_2023-01-11-18-20-50-87_6012fa4d4ddec268fc5c7112cbb265e7.jpg', caption: 'Pure joy ✨' },
+            { type: 'image', src: 'carousel/Screenshot_2024-10-25-11-00-49-66_a63b0f8076346d26cbdc1b971a1da2a7.jpg', caption: 'Cute expression 🤪' },
+            { type: 'image', src: 'carousel/Screenshot_2024-12-11-21-48-39-22_a63b0f8076346d26cbdc1b971a1da2a7.jpg', caption: 'Love this memory 💕' },
+            { type: 'image', src: 'carousel/Snapchat-1456152853.jpg', caption: 'Cutest ever! 💖' },
+            { type: 'video', src: 'carousel/Record_2024-12-11-21-48-46.mp4', caption: 'Funny video moment! 🎥😜' }
+        ];
+
+        let currentFinalIndex = 0;
+        const finalCarouselSlideContent = document.getElementById('finalCarouselSlideContent');
+        const finalCarouselCaptionText = document.getElementById('finalCarouselCaptionText');
+        const finalCarouselDotsContainer = document.getElementById('finalCarouselDotsContainer');
+        const finalPrevSlideBtn = document.getElementById('finalPrevSlideBtn');
+        const finalNextSlideBtn = document.getElementById('finalNextSlideBtn');
+
+        function initFinalCarouselDots() {
+            if (!finalCarouselDotsContainer) return;
+            finalCarouselDotsContainer.innerHTML = '';
+            finalMemoryItems.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => showFinalSlide(idx));
+                finalCarouselDotsContainer.appendChild(dot);
+            });
+        }
+
+        function showFinalSlide(index) {
+            if (!finalCarouselSlideContent) return;
+            currentFinalIndex = (index + finalMemoryItems.length) % finalMemoryItems.length;
+            const item = finalMemoryItems[currentFinalIndex];
+
+            if (item.type === 'video') {
+                finalCarouselSlideContent.innerHTML = `<video src="${item.src}" autoplay muted loop playsinline class="carousel-slide"></video>`;
+            } else {
+                finalCarouselSlideContent.innerHTML = `<img src="${item.src}" alt="Memory" class="carousel-slide" />`;
+            }
+
+            if (finalCarouselCaptionText) {
+                finalCarouselCaptionText.textContent = `${item.caption} (${currentFinalIndex + 1}/${finalMemoryItems.length})`;
+            }
+
+            const dots = finalCarouselDotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentFinalIndex);
+            });
+        }
+
+        if (finalPrevSlideBtn) finalPrevSlideBtn.addEventListener('click', () => showFinalSlide(currentFinalIndex - 1));
+        if (finalNextSlideBtn) finalNextSlideBtn.addEventListener('click', () => showFinalSlide(currentFinalIndex + 1));
+
+        // Touch Swipe Support for Final Memories Carousel
+        let finalTouchStartX = 0;
+        let finalTouchEndX = 0;
+        const finalCarouselWrapper = document.getElementById('finalCarouselWrapper');
+        if (finalCarouselWrapper) {
+            finalCarouselWrapper.addEventListener('touchstart', (e) => {
+                finalTouchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            finalCarouselWrapper.addEventListener('touchend', (e) => {
+                finalTouchEndX = e.changedTouches[0].screenX;
+                if (finalTouchStartX - finalTouchEndX > 40) showFinalSlide(currentFinalIndex + 1);
+                if (finalTouchEndX - finalTouchStartX > 40) showFinalSlide(currentFinalIndex - 1);
+            }, { passive: true });
+        }
+
         if (toFinalMemoriesBtn) {
             toFinalMemoriesBtn.addEventListener('click', function() {
                 celebrationCard.classList.add('fade-out');
@@ -1778,6 +1859,8 @@
                     if (celebrationVideo) celebrationVideo.pause();
                     finalMemoriesCard.classList.remove('hidden');
                     finalMemoriesCard.classList.remove('fade-out');
+                    initFinalCarouselDots();
+                    showFinalSlide(0);
                 }, 450);
             });
         }
